@@ -11,7 +11,7 @@ class AuthViewModel extends GetxController {
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  String email, password, name;
+  String email, password, name, pic;
 
   Rx<User> _user = Rx<User>();
 
@@ -105,6 +105,7 @@ class AuthViewModel extends GetxController {
       email: user.user.email,
       name: name == null ? user.user.displayName : name,
       pic: '',
+      // pic: pic.isEmpty ? user.user.photoURL : pic,
     ));
   }
 

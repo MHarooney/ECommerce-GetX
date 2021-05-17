@@ -19,18 +19,27 @@ class RegisterView extends GetWidget<AuthViewModel> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        leading: GestureDetector(
-            onTap: () {
-              Get.off(LoginView());
-            },
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            )),
+        // leading: GestureDetector(
+        //     onTap: () {
+        //       Get.off(LoginView());
+        //     },
+        //     child: Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.black,
+        //     )),
+        leading: IconButton(
+          onPressed: () {
+            Get.off(LoginView());
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
       ),
       body: GetBuilder(
-        init:AuthViewModel(),
-        builder:(value) =>  SingleChildScrollView(
+        init: AuthViewModel(),
+        builder: (value) => SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(
               top: 50,
@@ -49,10 +58,10 @@ class RegisterView extends GetWidget<AuthViewModel> {
                     height: 30,
                   ),
                   DefaultTextFormField(
-                    onSubmit: (value) {
+                    onSave: (value) {
                       controller.name = value;
                     },
-                    controller: nameController,
+                    // controller: nameController,
                     type: TextInputType.name,
                     validate: (String value) {
                       if (value.isEmpty) {
@@ -62,26 +71,14 @@ class RegisterView extends GetWidget<AuthViewModel> {
                     label: 'User Name',
                     prefix: Icons.person,
                   ),
-                  // CustomTextFormField(
-                  //   text: 'Name',
-                  //   hint: 'Pesa',
-                  //   onSave: (value) {
-                  //     controller.name = value;
-                  //   },
-                  //   validator: (value) {
-                  //     if (value == null) {
-                  //       print("ERROR");
-                  //     }
-                  //   },
-                  // ),
                   SizedBox(
                     height: 30,
                   ),
                   DefaultTextFormField(
-                    onSubmit: (value){
+                    onSave: (value) {
                       controller.email = value;
                     },
-                    controller: emailController,
+                    // controller: emailController,
                     type: TextInputType.emailAddress,
                     validate: (String value) {
                       if (value.isEmpty) {
@@ -107,16 +104,15 @@ class RegisterView extends GetWidget<AuthViewModel> {
                     height: 40,
                   ),
                   DefaultTextFormField(
-                    controller: passwordController,
+                    // controller: passwordController,
                     type: TextInputType.visiblePassword,
                     suffix: controller.suffix,
-                    onSubmit: (value) {
+                    onSave: (value) {
                       controller.password = value;
                     },
                     isPassword: controller.isPassword,
                     suffixPressed: () {
-                      controller
-                          .changePasswordVisibility();
+                      controller.changePasswordVisibility();
                     },
                     validate: (String value) {
                       if (value.isEmpty) {
@@ -126,18 +122,6 @@ class RegisterView extends GetWidget<AuthViewModel> {
                     label: 'Password',
                     prefix: Icons.lock_outline,
                   ),
-                  // CustomTextFormField(
-                  //   text: 'Password',
-                  //   hint: '**********',
-                  //   onSave: (value) {
-                  //     controller.password = value;
-                  //   },
-                  //   validator: (value) {
-                  //     if (value == null) {
-                  //       print('error');
-                  //     }
-                  //   },
-                  // ),
                   SizedBox(
                     height: 15,
                   ),

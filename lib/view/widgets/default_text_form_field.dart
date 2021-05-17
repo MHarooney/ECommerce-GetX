@@ -13,10 +13,11 @@ class DefaultTextFormField extends StatelessWidget {
   final IconData suffix;
   final Function suffixPressed;
   final bool isClickable;
+  final Function onSave;
 
   const DefaultTextFormField({
     Key key,
-    @required this.controller,
+    this.controller,
     @required this.type,
     this.onSubmit,
     this.onChange,
@@ -27,12 +28,14 @@ class DefaultTextFormField extends StatelessWidget {
     @required this.prefix,
     this.suffix,
     this.suffixPressed,
+    this.onSave,
     this.isClickable = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSave,
       controller: controller,
       keyboardType: type,
       obscureText: isPassword,

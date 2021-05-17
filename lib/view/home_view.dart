@@ -1,6 +1,6 @@
-import 'package:getxflutter/constance.dart';
+import 'package:getxflutter/constants.dart';
 import 'package:getxflutter/core/view_model/home_view_model.dart';
-import 'package:getxflutter/view/daetilas_view.dart';
+import 'package:getxflutter/view/details_view.dart';
 import 'package:getxflutter/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

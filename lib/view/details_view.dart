@@ -1,4 +1,4 @@
-import 'package:getxflutter/constance.dart';
+import 'package:getxflutter/constants.dart';
 import 'package:getxflutter/model/product_model.dart';
 import 'package:getxflutter/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';

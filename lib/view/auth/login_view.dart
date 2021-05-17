@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:getxflutter/view/widgets/default_button.dart';
 import 'package:getxflutter/view/widgets/default_text_form_field.dart';
 
-import '../../constance.dart';
+import '../../constants.dart';
 import 'default_icon.dart';
 
 class LoginView extends GetWidget<AuthViewModel> {
@@ -68,10 +68,10 @@ class LoginView extends GetWidget<AuthViewModel> {
                     height: 30,
                   ),
                   DefaultTextFormField(
-                    onSubmit: (value) {
+                    onSave: (value) {
                       controller.email = value;
                     },
-                    controller: emailController,
+                    // controller: emailController,
                     type: TextInputType.emailAddress,
                     validate: (String value) {
                       if (value.isEmpty) {
@@ -97,10 +97,10 @@ class LoginView extends GetWidget<AuthViewModel> {
                     height: 40,
                   ),
                   DefaultTextFormField(
-                    controller: passwordController,
+                    // controller: passwordController,
                     type: TextInputType.visiblePassword,
                     suffix: controller.suffix,
-                    onSubmit: (value) {
+                    onSave: (value) {
                       if (_formKey.currentState.validate()) {
                         controller.signInWithEmailAndPassword(
                           // email: emailController.text,
