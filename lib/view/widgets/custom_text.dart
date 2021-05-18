@@ -7,6 +7,7 @@ class CustomText extends StatelessWidget {
   final double fontSize;
 
   final Color color;
+  final TextOverflow overflow;
 
   final Alignment alignment;
 
@@ -19,6 +20,7 @@ class CustomText extends StatelessWidget {
     this.color = Colors.black,
     this.alignment = Alignment.topLeft,
     this.maxLine,
+    this.overflow,
     this.height = 1,
   });
 
@@ -34,6 +36,7 @@ class CustomText extends StatelessWidget {
           fontSize: fontSize,
         ),
         maxLines: maxLine,
+        overflow: overflow,
       ),
     );
   }

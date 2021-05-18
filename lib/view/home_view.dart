@@ -24,8 +24,9 @@ class HomeView extends StatelessWidget {
           ? Center(child: CircularProgressIndicator())
           : Scaffold(
               body: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
                 child: Container(
-                  padding: EdgeInsets.only(top: 100, left: 20, right: 20),
+                  padding: EdgeInsets.only(top: 55, left: 20, right: 20),
                   child: Column(
                     children: [
                       _searchTextFormField(),
@@ -38,7 +39,7 @@ class HomeView extends StatelessWidget {
                       SizedBox(
                         height: 30,
                       ),
-                      _listViewCategory(),
+                      _listViewCategory(context),
                       SizedBox(
                         height: 30,
                       ),
@@ -85,10 +86,10 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _listViewCategory() {
+  Widget _listViewCategory(context) {
     return GetBuilder<HomeViewModel>(
       builder: (controller) => Container(
-        height: 100,
+        height: MediaQuery.of(context).size.height * .15,
         child: ListView.separated(
           itemCount: controller.categoryModel.length,
           scrollDirection: Axis.horizontal,
@@ -107,9 +108,9 @@ class HomeView extends StatelessWidget {
                     child: Image.network(controller.categoryModel[index].image),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                // SizedBox(
+                //   height: 20,
+                // ),
                 CustomText(
                   text: controller.categoryModel[index].name,
                 ),
@@ -134,7 +135,7 @@ class HomeView extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.to(DetailsView(
+                Get.to(() => DetailsView(
                   model: controller.productModel[index],
                 ));
               },
@@ -148,7 +149,7 @@ class HomeView extends StatelessWidget {
                         color: Colors.grey.shade100,
                       ),
                       child: Container(
-                          height: 220,
+                          height: MediaQuery.of(context).size.height * .2,
                           width: MediaQuery.of(context).size.width * .4,
                           child: Image.network(
                             controller.productModel[index].image,
@@ -165,12 +166,12 @@ class HomeView extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Expanded(
-                      child: CustomText(
-                        text: controller.productModel[index].description,
-                        color: Colors.grey,
-                        alignment: Alignment.bottomLeft,
-                      ),
+                    CustomText(
+                      text: controller.productModel[index].description,
+                      color: Colors.grey,
+                      maxLine: 2,
+                      overflow: TextOverflow.ellipsis,
+                      alignment: Alignment.bottomLeft,
                     ),
                     SizedBox(
                       height: 20,

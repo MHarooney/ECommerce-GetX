@@ -46,7 +46,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(RegisterView());
+                          Get.to(() => RegisterView());
                         },
                         child: CustomText(
                           text: "Sign Up",

@@ -29,7 +29,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
         //     )),
         leading: IconButton(
           onPressed: () {
-            Get.off(LoginView());
+            Get.off(() => LoginView());
           },
           icon: Icon(
             Icons.arrow_back,
