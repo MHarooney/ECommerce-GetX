@@ -144,7 +144,7 @@ class DetailsView extends StatelessWidget {
                       width: 180,
                       height: 100,
                       child: DefaultButton(
-                        function: () {},
+                        onPressed: () {},
                         text: 'add',
                       ),
                     ),

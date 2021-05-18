@@ -144,7 +144,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                     height: 15,
                   ),
                   DefaultButton(
-                    function: () {
+                    onPressed: () {
                       _formKey.currentState.save();
 
                       if (_formKey.currentState.validate()) {
