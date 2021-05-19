@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:getxflutter/constants.dart';
+import 'package:getxflutter/core/view_model/cart_view_model.dart';
+import 'package:getxflutter/model/cart_product_model.dart';
 import 'package:getxflutter/model/product_model.dart';
 import 'package:getxflutter/view/home_view.dart';
 import 'package:getxflutter/view/widgets/custom_text.dart';
@@ -139,13 +141,21 @@ class DetailsView extends StatelessWidget {
                         )
                       ],
                     ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      width: 180,
-                      height: 100,
-                      child: DefaultButton(
-                        onPressed: () {},
-                        text: 'add',
+                    GetBuilder<CartViewModel>(
+                      init: CartViewModel(),
+                      builder: (contoller) => Container(
+                        padding: EdgeInsets.all(20),
+                        width: 180,
+                        height: 100,
+                        child: DefaultButton(
+                          onPressed: () => contoller.addProduct(CartProductModel(
+                            name: model.name,
+                            image: model.image,
+                            price: model.price,
+                            quantity: 1,
+                          )),
+                          text: 'add',
+                        ),
                       ),
                     ),
                   ],

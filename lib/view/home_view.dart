@@ -91,6 +91,7 @@ class HomeView extends StatelessWidget {
       builder: (controller) => Container(
         height: MediaQuery.of(context).size.height * .15,
         child: ListView.separated(
+          physics: BouncingScrollPhysics(),
           itemCount: controller.categoryModel.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {

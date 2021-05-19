@@ -26,7 +26,7 @@ class ProductModel {
     price = map['price'];
   }
 
-  Map<String, dynamic> toJson() {
+  toJson() {
     return {
       'name': name,
       'image': image,
