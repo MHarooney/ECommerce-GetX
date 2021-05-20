@@ -2,11 +2,12 @@ import 'package:getxflutter/helper/extenstion.dart';
 import 'package:flutter/cupertino.dart';
 
 class CartProductModel {
-  String name, image, price;
+  String name, image, price, productId;
   int quantity;
 
   CartProductModel(
-      {this.name,
+      {this.productId,
+        this.name,
         this.image,
         this.price,
         this.quantity,});
@@ -16,6 +17,7 @@ class CartProductModel {
       return;
     }
 
+    productId = map['productId'];
     name = map['name'];
     image = map['image'];
     price = map['price'];
@@ -24,6 +26,7 @@ class CartProductModel {
 
   toJson() {
     return {
+      'productId': productId,
       'name': name,
       'image': image,
       'price': price,

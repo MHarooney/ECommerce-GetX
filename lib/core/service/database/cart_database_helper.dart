@@ -1,5 +1,6 @@
 import 'package:getxflutter/constants.dart';
 import 'package:getxflutter/model/cart_product_model.dart';
+import 'package:getxflutter/model/product_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -26,7 +27,8 @@ class CartDatabaseHelper {
       $columnName TEXT NOT NULL,
       $columnImage TEXT NOT NULL,
       $columnPrice TEXT NOT NULL,
-      $columnQuantity INTEGER NOT NULL)
+      $columnQuantity INTEGER NOT NULL,
+      $columnProductId TEXT NOT NULL)
       ''');
     });
   }
@@ -35,8 +37,8 @@ class CartDatabaseHelper {
     var dbClient = await database;
     List<Map> maps = await dbClient.query(tableCartProduct);
 
-    List<CartProductModel> list = maps.isNotEmpty ?
-        maps.map((product) => CartProductModel.fromJson(product)).toList()
+    List<CartProductModel> list = maps.isNotEmpty
+        ? maps.map((product) => CartProductModel.fromJson(product)).toList()
         : [];
 
     return list;
@@ -49,6 +51,16 @@ class CartDatabaseHelper {
       tableCartProduct,
       model.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  updateProduct(CartProductModel model) async {
+    var dbClient = await database;
+    return await dbClient.update(
+      tableCartProduct,
+      model.toJson(),
+      where: '$columnProductId = ?',
+      whereArgs: [model.productId],
     );
   }
 }

@@ -2,11 +2,12 @@ import 'package:getxflutter/helper/extenstion.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProductModel {
-  String name, image, description, sized, price;
+  String productId, name, image, description, sized, price;
   Color color;
 
   ProductModel(
-      {this.name,
+      {this.productId,
+      this.name,
       this.image,
       this.description,
       this.color,
@@ -18,6 +19,7 @@ class ProductModel {
       return;
     }
 
+    productId = map['productId'];
     name = map['name'];
     image = map['image'];
     description = map['description'];
@@ -28,6 +30,7 @@ class ProductModel {
 
   toJson() {
     return {
+      'productId': productId,
       'name': name,
       'image': image,
       'description': description,

@@ -116,7 +116,7 @@ class DetailsView extends StatelessWidget {
                           text: model.description,
                           fontSize: 18,
                           height: 2.5,
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -138,11 +138,11 @@ class DetailsView extends StatelessWidget {
                           text: ' \$' + model.price,
                           color: primaryColor,
                           fontSize: 18,
-                        )
+                        ),
                       ],
                     ),
                     GetBuilder<CartViewModel>(
-                      init: CartViewModel(),
+                      init: Get.find(),
                       builder: (contoller) => Container(
                         padding: EdgeInsets.all(20),
                         width: 180,
@@ -153,6 +153,7 @@ class DetailsView extends StatelessWidget {
                             image: model.image,
                             price: model.price,
                             quantity: 1,
+                            productId: model.productId,
                           )),
                           text: 'add',
                         ),
