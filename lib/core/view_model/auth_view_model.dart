@@ -1,6 +1,7 @@
 import 'package:getxflutter/core/service/firestore_user.dart';
+import 'package:getxflutter/helper/local_storage_data.dart';
 import 'package:getxflutter/model/user_model.dart';
-import 'package:getxflutter/view/home_view.dart';
+import 'package:getxflutter/view/control_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -16,6 +17,8 @@ class AuthViewModel extends GetxController {
   Rx<User> _user = Rx<User>();
 
   String get user => _user.value?.email;
+
+  final LocalStorageData localStorageData = Get.find();
 
   @override
   void onInit() {
@@ -49,7 +52,7 @@ class AuthViewModel extends GetxController {
 
     await _auth.signInWithCredential(credential).then((user) {
       saveUser(user);
-      Get.offAll(HomeView());
+      Get.offAll(ControlView());
     });
   }
 
@@ -66,8 +69,14 @@ class AuthViewModel extends GetxController {
 
   void signInWithEmailAndPassword() async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-      Get.offAll(HomeView());
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) async {
+        await FireStoreUser().getCurrentUser(value.user.uid).then((value) {
+          setUser(UserModel.fromJson(value.data()));
+        });
+      });
+      Get.offAll(ControlView());
     } catch (e) {
       print(e.message);
       Get.snackbar(
@@ -87,7 +96,7 @@ class AuthViewModel extends GetxController {
         saveUser(user);
       });
 
-      Get.offAll(HomeView());
+      Get.offAll(ControlView());
     } catch (e) {
       print(e.message);
       Get.snackbar(
@@ -100,13 +109,19 @@ class AuthViewModel extends GetxController {
   }
 
   void saveUser(UserCredential user) async {
-    await FireStoreUser().addUserToFireStore(UserModel(
+    UserModel userModel = UserModel(
       userId: user.user.uid,
       email: user.user.email,
       name: name == null ? user.user.displayName : name,
       pic: '',
       // pic: pic.isEmpty ? user.user.photoURL : pic,
-    ));
+    );
+    await FireStoreUser().addUserToFireStore(userModel);
+    setUser(userModel);
+  }
+
+  void setUser(UserModel userModel) async {
+    await localStorageData.setUser(userModel);
   }
 
   IconData suffix = Icons.visibility_outlined;
@@ -115,7 +130,7 @@ class AuthViewModel extends GetxController {
   void changePasswordVisibility() {
     isPassword = !isPassword;
     suffix =
-    isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
 
     update();
   }

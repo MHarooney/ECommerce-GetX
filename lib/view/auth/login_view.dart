@@ -5,6 +5,7 @@ import 'package:getxflutter/view/widgets/custom_circle_raw_material_btn.dart';
 import 'package:getxflutter/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getxflutter/view/widgets/custom_text_form_field.dart';
 import 'package:getxflutter/view/widgets/default_button.dart';
 import 'package:getxflutter/view/widgets/default_text_form_field.dart';
 
@@ -67,71 +68,71 @@ class LoginView extends GetWidget<AuthViewModel> {
                   SizedBox(
                     height: 30,
                   ),
-                  DefaultTextFormField(
-                    onSave: (value) {
-                      controller.email = value;
-                    },
-                    // controller: emailController,
-                    type: TextInputType.emailAddress,
-                    validate: (String value) {
-                      if (value.isEmpty) {
-                        return 'please enter your email address';
-                      }
-                    },
-                    label: 'Email Address',
-                    prefix: Icons.email_outlined,
-                  ),
-                  // CustomTextFormField(
-                  //   text: 'Email',
-                  //   hint: 'iamdavid@gmail.com',
+                  // DefaultTextFormField(
                   //   onSave: (value) {
                   //     controller.email = value;
                   //   },
-                  //   validator: (value) {
-                  //     if (value == null) {
-                  //       print("ERROR");
+                  //   // controller: emailController,
+                  //   type: TextInputType.emailAddress,
+                  //   validate: (String value) {
+                  //     if (value.isEmpty) {
+                  //       return 'please enter your email address';
                   //     }
                   //   },
+                  //   label: 'Email Address',
+                  //   prefix: Icons.email_outlined,
                   // ),
+                  CustomTextFormField(
+                    text: 'Email',
+                    hint: 'Please Enter Email Here',
+                    onSave: (value) {
+                      controller.email = value;
+                    },
+                    validator: (value) {
+                      if (value == null) {
+                        print("ERROR");
+                      }
+                    },
+                  ),
                   SizedBox(
                     height: 40,
                   ),
-                  DefaultTextFormField(
-                    // controller: passwordController,
-                    type: TextInputType.visiblePassword,
-                    suffix: controller.suffix,
-                    onSave: (value) {
-                      if (_formKey.currentState.validate()) {
-                        controller.signInWithEmailAndPassword(
-                          // email: emailController.text,
-                          // password: passwordController.text,
-                        );
-                      }
-                    },
-                    isPassword: controller.isPassword,
-                    suffixPressed: () {
-                      controller.changePasswordVisibility();
-                    },
-                    validate: (String value) {
-                      if (value.isEmpty) {
-                        return 'password is too short';
-                      }
-                    },
-                    label: 'Password',
-                    prefix: Icons.lock_outline,
-                  ),
-                  // CustomTextFormField(
-                  //   text: 'Password',
-                  //   hint: '**********',
+                  // DefaultTextFormField(
+                  //   // controller: passwordController,
+                  //   type: TextInputType.visiblePassword,
+                  //   suffix: controller.suffix,
                   //   onSave: (value) {
-                  //     controller.password = value;
-                  //   },
-                  //   validator: (value) {
-                  //     if (value == null) {
-                  //       print('error');
+                  //     if (_formKey.currentState.validate()) {
+                  //       controller.signInWithEmailAndPassword(
+                  //         // email: emailController.text,
+                  //         // password: passwordController.text,
+                  //       );
                   //     }
                   //   },
+                  //   isPassword: controller.isPassword,
+                  //   suffixPressed: () {
+                  //     controller.changePasswordVisibility();
+                  //   },
+                  //   validate: (String value) {
+                  //     if (value.isEmpty) {
+                  //       return 'password is too short';
+                  //     }
+                  //   },
+                  //   label: 'Password',
+                  //   prefix: Icons.lock_outline,
                   // ),
+                  CustomTextFormField(
+                    text: 'Password',
+                    hint: 'Enter your password',
+                    onSave: (value) {
+                      controller.password = value;
+                    },
+                    validator: (value) {
+                      if (value == null) {
+                        print('error');
+                      }
+                    },
+                  ),
                   SizedBox(
                     height: 20,
                   ),

@@ -39,6 +39,7 @@ dependencies:
   sqflite: ^2.0.0+3
   #https://pub.dev/packages/path/install
   path: ^1.8.0
+  shared_preferences: ^2.0.5
 
 
 dev_dependencies:
