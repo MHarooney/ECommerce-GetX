@@ -11,3 +11,5 @@ final String columnProductId = 'productId';
 const primaryColor = Colors.cyan;
 
 const CACHED_USER_DATA = 'CACHED_USER_DATA';
+
+const IconData navigateNext = Icons.navigate_next;

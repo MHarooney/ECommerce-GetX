@@ -8,7 +8,7 @@ class UserModel {
     this.pic,
   });
 
-  UserModel.fromJson(Map<String, dynamic> map) {
+  UserModel.fromJson(Map<dynamic, dynamic> map) {
     if (map == null) {
       return;
     }
@@ -18,7 +18,7 @@ class UserModel {
     pic = map['pic'];
   }
 
-  Map<String, dynamic> toJson() {
+  toJson() {
     return {
       'userId': userId,
       'email': email,
