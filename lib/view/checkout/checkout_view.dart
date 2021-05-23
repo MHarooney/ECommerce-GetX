@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getxflutter/core/view_model/checkout_view_model.dart';
+import 'package:getxflutter/helper/enum.dart';
 import 'package:getxflutter/view/checkout/widgets/add_address_widget.dart';
 import 'package:getxflutter/view/checkout/widgets/delevery_time_widget.dart';
 import 'package:getxflutter/view/checkout/widgets/summary_widget.dart';
+import 'package:getxflutter/view/widgets/default_button.dart';
 import 'package:status_change/status_change.dart';
 
 import '../../constants.dart';
 
 class CheckOutView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CheckOutViewModel>(
@@ -37,7 +38,8 @@ class CheckOutView extends StatelessWidget {
               child: StatusChange.tileBuilder(
                 theme: StatusChangeThemeData(
                   direction: Axis.horizontal,
-                  connectorTheme: ConnectorThemeData(space: 1.0, thickness: 1.0),
+                  connectorTheme:
+                      ConnectorThemeData(space: 1.0, thickness: 1.0),
                 ),
                 builder: StatusChangeTileBuilder.connected(
                   itemWidth: (_) =>
@@ -111,15 +113,22 @@ class CheckOutView extends StatelessWidget {
                 ? DeliveryTime()
                 : controller.pages == Pages.AddAddress
                     ? AddAddress()
-                    : Summary()
+                    : Summary(),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                width: 200,
+                height: 100,
+                child: DefaultButton(
+                  onPressed: () {
+                    controller.chaneIndex(controller.index + 1);
+                  },
+                  text: 'NEXT',
+                ),
+              ),
+            ),
           ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.skip_next),
-          onPressed: () {
-            controller.chaneIndex(controller.index + 1);
-          },
-          backgroundColor: inProgressColor,
         ),
       ),
     );

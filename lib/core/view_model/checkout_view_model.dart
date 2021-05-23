@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getxflutter/helper/enum.dart';
 import 'package:getxflutter/view/control_view.dart';
 
 import '../../constants.dart';
