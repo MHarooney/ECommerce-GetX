@@ -13,3 +13,13 @@ const primaryColor = Colors.cyan;
 const CACHED_USER_DATA = 'CACHED_USER_DATA';
 
 const IconData navigateNext = Icons.navigate_next;
+
+const kTileHeight = 50.0;
+const inProgressColor = Colors.black87;
+const todoColor = Color(0xffd1d2d7);
+
+enum Pages {
+  DeliveryTime,
+  AddAddress,
+  Summary,
+}

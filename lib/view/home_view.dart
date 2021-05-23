@@ -163,6 +163,8 @@ class HomeView extends StatelessWidget {
                     CustomText(
                       text: controller.productModel[index].name,
                       alignment: Alignment.bottomLeft,
+                      maxLine: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(
                       height: 10,
@@ -170,7 +172,7 @@ class HomeView extends StatelessWidget {
                     CustomText(
                       text: controller.productModel[index].description,
                       color: Colors.grey,
-                      maxLine: 2,
+                      maxLine: 1,
                       overflow: TextOverflow.ellipsis,
                       alignment: Alignment.bottomLeft,
                     ),

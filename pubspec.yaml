@@ -41,6 +41,7 @@ dependencies:
   path: ^1.8.0
   shared_preferences: ^2.0.5
   flutter_svg: ^0.22.0
+  status_change: ^1.0.0
 
 
 dev_dependencies:

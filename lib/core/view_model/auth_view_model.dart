@@ -25,6 +25,9 @@ class AuthViewModel extends GetxController {
     // TODO: implement onInit
     super.onInit();
     _user.bindStream(_auth.authStateChanges());
+    if(_auth.currentUser != null) {
+      getCurrentUserData(_auth.currentUser.uid);
+    }
   }
 
   @override
@@ -72,9 +75,7 @@ class AuthViewModel extends GetxController {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
-        await FireStoreUser().getCurrentUser(value.user.uid).then((value) {
-          setUser(UserModel.fromJson(value.data()));
-        });
+        getCurrentUserData(value.user.uid);
       });
       Get.offAll(ControlView());
     } catch (e) {
@@ -124,6 +125,12 @@ class AuthViewModel extends GetxController {
     await localStorageData.setUser(userModel);
   }
 
+  void getCurrentUserData(String uid) async {
+    await FireStoreUser().getCurrentUser(uid).then((value) {
+      setUser(UserModel.fromJson(value.data()));
+    });
+  }
+
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
 
@@ -131,7 +138,6 @@ class AuthViewModel extends GetxController {
     isPassword = !isPassword;
     suffix =
         isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-
     update();
   }
 }

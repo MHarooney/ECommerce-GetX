@@ -6,6 +6,8 @@ import 'package:getxflutter/core/view_model/cart_view_model.dart';
 import 'package:getxflutter/view/widgets/custom_text.dart';
 import 'package:getxflutter/view/widgets/default_button.dart';
 
+import 'checkout/checkout_view.dart';
+
 class CartView extends StatelessWidget {
   // List<String> names = <String>[
   //   '7arooney',
@@ -198,7 +200,9 @@ class CartView extends StatelessWidget {
                         padding: const EdgeInsets.all(20.0),
                         child: DefaultButton(
                           width: 180.0,
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => CheckOutView());
+                          },
                           text: 'CHECKOUT',
                         ),
                       ),
