@@ -26,10 +26,10 @@ class CheckOutViewModel extends GetxController {
   }
 
   Color getColor(int i) {
-    if (index == _index) {
+    if (i == _index) {
       return inProgressColor;
     } else if (i < _index) {
-      return Colors.green;
+      return Colors.cyan;
     } else {
       return todoColor;
     }
