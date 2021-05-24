@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:getxflutter/constants.dart';
 import 'package:getxflutter/helper/enum.dart';
 import 'package:getxflutter/view/widgets/custom_text.dart';
 
-import 'delivery_types_radio_list_tile.dart';
+import 'widgets/delivery_types_radio_list_tile.dart';
 
 class DeliveryTime extends StatefulWidget {
   @override

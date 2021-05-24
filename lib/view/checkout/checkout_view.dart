@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getxflutter/core/view_model/checkout_view_model.dart';
 import 'package:getxflutter/helper/enum.dart';
-import 'package:getxflutter/view/checkout/widgets/add_address_widget.dart';
-import 'package:getxflutter/view/checkout/widgets/delevery_time_widget.dart';
-import 'package:getxflutter/view/checkout/widgets/summary_widget.dart';
+import 'package:getxflutter/view/checkout/add_address_view/add_address_widget.dart';
+import 'package:getxflutter/view/checkout/delivery_time_view/delevery_time_view.dart';
+import 'package:getxflutter/view/checkout/summary_view/summary_view.dart';
 import 'package:getxflutter/view/widgets/default_button.dart';
 import 'package:status_change/status_change.dart';
 
